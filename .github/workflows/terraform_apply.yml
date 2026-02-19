@@ -2,7 +2,7 @@ name: "Apply_TF_Plan"
 permissions:
   id-token: write
   contents: read
-  issues: read
+  issues: write
 on:
   workflow_call:
     inputs:
