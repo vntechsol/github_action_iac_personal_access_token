@@ -2,7 +2,7 @@ name: "Merge PR to deploy"
 permissions:
   id-token: write
   contents: read
-  issues: read
+  issues: write
 on:
   workflow_dispatch:
   push:
