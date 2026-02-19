@@ -1,0 +1,38 @@
+name: "Merge PR to deploy"
+permissions:
+  id-token: write
+  contents: read
+  issues: read
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  Plan:
+    uses: ./.github/workflows/terraform_plan.yml
+    with:
+      path: files/accounts/datascience/environments/eu-west-2/wise
+      gh_environment: infra-test
+    secrets:
+      aws_role_to_assume: ${{ secrets.AWS_GITHUB_ACTION_ROLE }}
+      aws_default_region: eu-west-2
+      terraform_version: ${{ secrets.TERRAFORM_VERSION }}
+      ssh_private_key:
+        ${{ secrets.SSH_PRIVATE_KEY }}
+        #${{ secrets.LN_SSH_PRIVATE_KEY }}
+
+  Deploy:
+    needs: Plan
+    uses: ./.github/workflows/terraform_apply.yml
+    with:
+      path: files/accounts/datascience/environments/eu-west-2/wise
+      gh_environment: infra-test
+    secrets:
+      aws_role_to_assume: ${{ secrets.AWS_GITHUB_ACTION_ROLE }}
+      aws_default_region: eu-west-2
+      terraform_version: ${{ secrets.TERRAFORM_VERSION }}
+      personal_access_token:
+        ${{ secrets.LN_PAT }}
+        #${{ secrets.JN_PAT }}
