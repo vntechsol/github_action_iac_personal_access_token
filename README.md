@@ -9,3 +9,6 @@ git config --global credential.helper '!f() { sleep 1; echo "username=<your-gith
 https://www.geeksforgeeks.org/git/how-to-authenticate-git-push-with-github-using-a-token/
 
 https://www.devopsschool.com/blog/terraform-source-for-modules-from-git-all-patterns-examples/
+
+
+Important of using personal-access-token with github-action-cicd. Need **permissions: issues: write**

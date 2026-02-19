@@ -1,3 +1,4 @@
+/*
 module "s3_bucket" {
   source = "git::https://github.com/vntechsol/github_action_iac_ssh_key//modules/s3/bucket"
 
@@ -9,3 +10,4 @@ module "s3_bucket" {
     Service       = "IaC"
   }
 }
+*/
